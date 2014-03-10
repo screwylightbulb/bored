@@ -1,9 +1,5 @@
 ﻿#pragma strict
 
-function Start () {
-
-}
-
 var HoldingItem : boolean = false;
 var HoldingObject : GameObject;
 var CursorDecal : GameObject;
@@ -12,10 +8,19 @@ var spinY : int;
 var spinZ : int;
 var gamePiecePrefab : GameObject;
 var gamePieceSpawn : Transform;
+var normalTransform : Transform;
 var instances : GameObject[];
 var instance : int = 0;
 var colours : Color[];
 var coln : int = 0;
+
+function Start () {
+	if (normalTransform == null)
+		throw "MissingFieldException - normalTransform";
+		
+	if (gamePieceSpawn == null)
+		throw "MissingFieldException - gamePieceSpawn";
+}
 
 function FixedUpdate() {
     var hit : RaycastHit;
@@ -67,7 +72,7 @@ function Update () {
 			HoldingObject.transform.position.x = hit.point.x;	
 			HoldingObject.transform.position.z = hit.point.z;	
 		}
-		HoldingObject.transform.rotation = Quaternion.Slerp (HoldingObject.transform.rotation, GameObject.Find("normalize").transform.rotation, Time.time * rotspeed);	
+		HoldingObject.transform.rotation = Quaternion.Slerp (HoldingObject.transform.rotation, normalTransform.rotation, Time.time * rotspeed);	
 	    HoldingObject.transform.position.y = Mathf.MoveTowards(HoldingObject.transform.position.y, 2.1, Time.deltaTime * 5);
 	}
 	

@@ -1,11 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Bored.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Bored.js">
     <Files>
-      <File FileName="Assets\Bored.js" Line="55" Column="32" />
-      <File FileName="..\TheMakersEden\TME\Assets\Control.js" Line="129" Column="23" />
-      <File FileName="..\LudumDare27\Tshif\Assets\LevelGen.js" Line="12" Column="1" />
-      <File FileName="..\5minutemurder\Assets\DataSetup.js" Line="292" Column="16" />
+      <File FileName="Assets\Scripts\Bored.js" Line="105" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
