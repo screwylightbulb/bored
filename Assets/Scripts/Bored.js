@@ -3,16 +3,18 @@
 var HoldingItem : boolean = false;
 var HoldingObject : GameObject;
 var CursorDecal : GameObject;
-var spinX : int;
-var spinY : int;
-var spinZ : int;
 var gamePiecePrefab : GameObject;
 var gamePieceSpawn : Transform;
 var normalTransform : Transform;
-var instances : GameObject[];
-var instance : int = 0;
 var colours : Color[];
-var coln : int = 0;
+
+private var spinX : int;
+private var spinY : int;
+private var spinZ : int;
+private var instances : GameObject[];
+private var instance : int = 0;
+private var coln : int = 0;
+private var rotspeed = 0.005;
 
 function Start () {
 	if (normalTransform == null)
@@ -55,6 +57,9 @@ function Update () {
 	        if (Physics.Raycast(ray, hit) && (hit.transform.tag == 'gamepiece' || hit.transform.tag == 'dice')) {
 				PickUpGamePiece(hit.transform.gameObject);
 	        }
+	        if (Physics.Raycast(ray, hit) && (hit.transform.tag == 'deck')) {
+				hit.transform.gameObject.GetComponent(DeckProperties).SendMessage("TakeCard");
+	        }
 	    }
 	} else {
 		if (Input.GetMouseButtonUp(0)) {
@@ -73,12 +78,10 @@ function Update () {
 			HoldingObject.transform.position.z = hit.point.z;	
 		}
 		HoldingObject.transform.rotation = Quaternion.Slerp (HoldingObject.transform.rotation, normalTransform.rotation, Time.time * rotspeed);	
-	    HoldingObject.transform.position.y = Mathf.MoveTowards(HoldingObject.transform.position.y, 2.1, Time.deltaTime * 5);
+	    	HoldingObject.transform.position.y = Mathf.MoveTowards(HoldingObject.transform.position.y, 2.1, Time.deltaTime * 5);
 	}
 	
 }
-
-private var rotspeed = 0.005;
 
 function PickUpCard(item : GameObject) {
 	if (!HoldingItem) {
